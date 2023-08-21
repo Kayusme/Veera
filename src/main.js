@@ -29,5 +29,6 @@ function displayLogs() {
 
 document.getElementById('registerButton').addEventListener('click', register);
 document.getElementById('loginButton').addEventListener('click', login);
-document.getE
+document.getElementById('logoutButton').addEventListener('click', logout);
+document.getElementById('displayLogsButton').addEventListener('click', displayLogs);
 
