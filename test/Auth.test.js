@@ -8,22 +8,43 @@ contract("Auth", function(accounts) {
   });
 
   it("should register a user", async function() {
-    await authInstance.register(accounts[0], "device1");
-    let user = await authInstance.users(accounts[0]);
-    assert.equal(user.device, "device1");
+      await authInstance.register(accounts[0], "device1", "192.168.0.1");
+      let user = await authInstance.users(accounts[0]);
+      assert.equal(user.device, "device1");
+      assert.equal(user.ip, "192.168.0.1");
   });
 
   it("should login a user", async function() {
-    await authInstance.register(accounts[0], "device1");
-    let isUser = await authInstance.login(accounts[0]);
-    assert.equal(isUser, true);
+      await authInstance.register(accounts[0], "device1", "192.168.0.1");
+      let isUser = await authInstance.login(accounts[0], "192.168.0.1");
+      assert.equal(isUser, true);
   });
 
   it("should logout a user", async function() {
-    await authInstance.register(accounts[0], "device1");
-    await authInstance.logout(accounts[0]);
-    let isUser = await authInstance.login(accounts[0]);
-    assert.equal(isUser, false);
+      await authInstance.register(accounts[0], "device1", "192.168.0.1");
+      await authInstance.logout(accounts[0]);
+      let isUser = await authInstance.login(accounts[0], "192.168.0.1");
+      assert.equal(isUser, false);
   });
+it("should fail login with wrong IP", async function() {
+    await authInstance.register(accounts[0], "device1", "192.168.0.1");
+    let isUser = await authInstance.login(accounts[0], "192.168.0.2");
+    assert.equal(isUser, false);
+});
+
+it("should inactivate system after two failed login attempts", async function() {
+    await authInstance.register(accounts[0], "device1", "192.168.0.1");
+    await authInstance.login(accounts[0], "192.168.0.2");
+    await authInstance.login(accounts[0], "192.168.0.2");
+    let isUser = await authInstance.login(accounts[0], "192.168.0.1");
+    assert.equal(isUser, false);
+});
+
+it("should store login attempt logs", async function() {
+    await authInstance.register(accounts[0], "device1", "192.168.0.1");
+    await authInstance.login(accounts[0], "192.168.0.1");
+    let logs = await authInstance.loginAttempts(accounts[0]);
+    assert.equal(logs.length, 1);
+});
 });
 
