@@ -46,5 +46,16 @@ it("should store login attempt logs", async function() {
     let logs = await authInstance.loginAttempts(accounts[0]);
     assert.equal(logs.length, 1);
 });
+
+it("should inactivate system after two failed login attempts and reactivate after 2 minutes", async function() {
+    await authInstance.register(accounts[0], "device1", "192.168.0.1");
+    await authInstance.login(accounts[0], "192.168.0.2");
+    await authInstance.login(accounts[0], "192.168.0.2");
+    let isSystemActive = await authInstance.systemActive();
+    assert.equal(isSystemActive, false);
+    await new Promise(resolve => setTimeout(resolve, 120000));
+    isSystemActive = await authInstance.systemActive();
+    assert.equal(isSystemActive, true);
+});
 });
 
