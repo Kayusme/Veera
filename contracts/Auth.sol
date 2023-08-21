@@ -8,7 +8,8 @@ contract Auth {
     }
 
     mapping(address => string[]) public loginAttempts;
-}
+    mapping(address => User) public users;
+    bool public systemActive = true;
     }
 
     mapping(address => User) public users;
@@ -22,12 +23,16 @@ contract Auth {
     uint256 public failedLoginAttempts;
     
     function login(address _address, string memory _ip) public returns (bool) {
+        if (!systemActive) {
+            return false;
+        }
         User memory user = users[_address];
         if (keccak256(abi.encodePacked(user.ip)) != keccak256(abi.encodePacked(_ip))) {
             failedLoginAttempts++;
             loginAttempts[_address].push("Failed login attempt");
             if (failedLoginAttempts >= 2) {
-                lastFailedLoginAttempt = now;
+                systemActive = false;
+                lastFailedLoginAttempt = now + 2 minutes;
             }
             return false;
         }
