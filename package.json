@@ -1,0 +1,24 @@
+{
+  "name": "veera",
+  "version": "1.0.0",
+  "description": "Blockchain User Authentication",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kayusme/Veera.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kayusme/Veera/issues"
+  },
+  "homepage": "https://github.com/Kayusme/Veera#readme",
+  "devDependencies": {
+    "truffle": "^5.4.11",
+    "bnb-faucet": "^1.0.0"
+  }
+}
+
