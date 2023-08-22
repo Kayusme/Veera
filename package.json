@@ -4,8 +4,10 @@
   "description": "Blockchain User Authentication",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "setup-faucet": "truffle exec scripts/setup-faucet.js --network bnb",
+      "get-bnb": "truffle exec scripts/get-bnb.js --network bnb"
+    },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Kayusme/Veera.git"
