@@ -8,7 +8,12 @@ module.exports = {
       network_id: "*"
     },
     bnb: {
-      provider: () => new HDWalletProvider(process.env.BNB_PRIVATE_KEY, "https://bsc-dataseed.binance.org/"),
+          provider: () => {
+            if (!process.env.BNB_PRIVATE_KEY) {
+              throw new Error('The BNB_PRIVATE_KEY environment variable is not set!');
+            }
+            return new HDWalletProvider(process.env.BNB_PRIVATE_KEY, "https://bsc-dataseed.binance.org/");
+          },
       network_id: 56,
       gas: 5500000,
       confirmations: 2,
