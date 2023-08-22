@@ -23,3 +23,8 @@ Veera is a blockchain-based user authentication system. It uses Ethereum smart c
 1. Start the local blockchain: `ganache-cli`
 2. In a new terminal, navigate to the project directory: `cd Veera`
 3. Run the tests: `truffle test`
+
+## Using the BNB Faucet
+1. Set up the BNB Faucet by following the instructions on the [BNB Faucet website](https://testnet.binance.org/faucet-smart).
+2. Add your BNB Faucet account to the `.env` file in the project directory: `BNB_FAUCET=your_bnb_faucet_account`.
+3. Use the BNB Faucet with Truffle by running the migrate command with the `--network bsc` option: `truffle migrate --network bsc`.
