@@ -12,12 +12,16 @@ Veera is a blockchain-based user authentication system. It uses Ethereum smart c
 2. Navigate to the project directory: `cd Veera`
 3. Install the dependencies: `npm install`
 4. Compile the smart contract: `truffle compile`
-5. Deploy the smart contract: `truffle migrate`
+5. Migrate and deploy the contracts using Truffle: `truffle migrate --network development` for local development or `truffle migrate --network bnb` for Binance Smart Chain.
 
 ## Running the Project
 1. Start the local blockchain: `ganache-cli`
 2. In a new terminal, navigate to the project directory: `cd Veera`
 3. Run the project: `npm start`
+
+## Using the BNB Faucet for Testing
+1. Set up the BNB Faucet: `npm run setup-faucet`
+2. Use the Faucet to get BNB for testing: `npm run get-bnb`
 
 ## Running Tests
 1. Start the local blockchain: `ganache-cli`
