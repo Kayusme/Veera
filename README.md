@@ -27,3 +27,9 @@ Veera is a blockchain-based user authentication system. It uses Ethereum smart c
 1. Start the local blockchain: `ganache-cli`
 2. In a new terminal, navigate to the project directory: `cd Veera`
 3. Run the tests: `truffle test`
+
+## Running the Application in the src Folder
+1. Start your local Ethereum blockchain. You can do this by running `ganache-cli` in a new terminal.
+2. Deploy the smart contract to your local blockchain. Navigate to the project directory and run `truffle migrate --network development`.
+3. Open the `index.html` file in your web browser. You can do this by navigating to the src folder and opening the file in your browser. For example, if you are using Chrome, you can do this by running `google-chrome index.html` in the terminal.
+4. You should now see the application running in your browser. You can register, login, and logout users using the provided form.
