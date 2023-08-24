@@ -1,6 +1,34 @@
 {
+<<<<<<< HEAD
   "dependencies": {
     "@truffle/hdwallet-provider": "^2.1.13",
     "web3": "^4.1.1"
   }
 }
+=======
+  "name": "veera",
+  "version": "1.0.0",
+  "description": "Blockchain User Authentication",
+  "main": "index.js",
+  "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "setup-faucet": "truffle exec scripts/setup-faucet.js --network bnb",
+      "get-bnb": "truffle exec scripts/get-bnb.js --network bnb"
+    },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kayusme/Veera.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kayusme/Veera/issues"
+  },
+  "homepage": "https://github.com/Kayusme/Veera#readme",
+  "devDependencies": {
+    "truffle": "^5.4.11",
+    "bnb-faucet": "^1.0.0"
+  }
+}
+
+>>>>>>> 8c9900c04334bedb18033cf92d784f889d679f2f
