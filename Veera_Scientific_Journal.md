@@ -13,7 +13,9 @@ Users can register with their Ethereum address, device name, and IP address. The
 Users need an Ethereum address and IP address to register and login. The system checks the IP address against the one used during registration to authenticate the user.
 
 ## Interface Screenshots
-[Insert screenshots here]
+![Screenshot of the registration page](url-to-screenshot-1)
+![Screenshot of the login page](url-to-screenshot-2)
+![Screenshot of the logout page](url-to-screenshot-3)
 
 ## Documentation
 The project's documentation includes this README.md file and the code comments in the project's files. The README.md file provides a high-level overview of the project, its features, and how to install and run it. The code comments provide detailed explanations of the code's functionality.
