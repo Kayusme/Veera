@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 /**
  * Use this file to configure your truffle project. It's seeded with some
  * common settings for different networks and features like migrations,
@@ -19,8 +19,8 @@
  *
  */
 
-// require('dotenv').config();
-// const mnemonic = process.env["MNEMONIC"];
+ require('dotenv').config();
+ const mnemonic = process.env["MNEMONIC"];
 // const infuraProjectId = process.env["INFURA_PROJECT_ID"];
  
 // const HDWalletProvider = require('@truffle/hdwallet-provider');
@@ -69,11 +69,11 @@ module.exports = {
          skipDryRun: true
       },
     //
-    // goerli: {
-    //   provider: () => new HDWalletProvider(mnemonic, `https://goerli.infura.io/v3/${infuraProjectId}`),
-    //   network_id: 5,       // Goerli's id
-    //   chain_id: 5
-    // }
+     goerli: {
+       provider: () => new HDWalletProvider(mnemonic, `https://goerli.infura.io/v3/e77f056c62ce4abaa7c84280b2af63e8`),
+       network_id: 56,       // Goerli's id
+       skipDryRun: true
+     }
   },
 
   // Set default mocha options here, use special reporters etc.
@@ -88,35 +88,3 @@ module.exports = {
     }
   }
 };
-=======
-const HDWalletProvider = require('@truffle/hdwallet-provider');
-
-module.exports = {
-  networks: {
-    development: {
-      host: "127.0.0.1",
-      port: 8545,
-      network_id: "*"
-    },
-    bnb: {
-          provider: () => {
-            if (!process.env.BNB_PRIVATE_KEY) {
-              throw new Error('The BNB_PRIVATE_KEY environment variable is not set!');
-            }
-            return new HDWalletProvider(process.env.BNB_PRIVATE_KEY, "https://bsc-dataseed.binance.org/");
-          },
-      network_id: 56,
-      gas: 5500000,
-      confirmations: 2,
-      timeoutBlocks: 200,
-      skipDryRun: true
-    }
-  },
-  compilers: {
-    solc: {
-      version: "0.8.0"
-    }
-  }
-};
-
->>>>>>> 8c9900c04334bedb18033cf92d784f889d679f2f
