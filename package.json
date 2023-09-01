@@ -1,11 +1,9 @@
 {
-<<<<<<< HEAD
   "dependencies": {
     "@truffle/hdwallet-provider": "^2.1.13",
     "web3": "^4.1.1"
   }
 }
-=======
   "name": "veera",
   "version": "1.0.0",
   "description": "Blockchain User Authentication",
@@ -31,4 +29,3 @@
   }
 }
 
->>>>>>> 8c9900c04334bedb18033cf92d784f889d679f2f
