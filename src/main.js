@@ -4,27 +4,32 @@ fetch('./contracts/Auth.json')
   .then(response => response.json())
   .then(async AuthABI => {
     try {
-      let web3 = new Web3(new Web3.providers.HttpProvider("https://data-seed-prebsc-1-s1.binance.org:8545"));
-      let authContract = new web3.eth.Contract(AuthABI.abi, '0xefa5c820bCb6139Eb93c22111C7866FaF784B0c8');
-      console.log(AuthABI.abi);
-      console.log("auth file: ", AuthABI);
-      const networkId = await web3.eth.net.getId();
-      console.log("network id: ", networkId);
-      const deployedNetwork = AuthABI.networks[networkId];
-      
-      if (!deployedNetwork) {
-        throw new Error('Contract not deployed on the current network');
-      }
+      // Check if MetaMask is installed and available
+      if (window.ethereum) {
+        await window.ethereum.enable(); // Request user's permission to connect MetaMask
+        const web3 = new Web3(window.ethereum);
 
-      console.log("deployedNetwork id: ", deployedNetwork);
-      
+        let authContract = new web3.eth.Contract(AuthABI.abi, '0x16C36b54A6E2862298CFB1882747a2370F021F2f');
 
-      async function register() {
-        let userAddress = document.getElementById('userAddress').value;
-        let device = document.getElementById('device').value;
-        let ip = document.getElementById('ip').value;
-        await authContract.methods.register(userAddress, device, ip).send({ from: userAddress });
-      }
+        const networkId = await web3.eth.net.getId();
+        const deployedNetwork = AuthABI.networks[networkId];
+        
+        if (!deployedNetwork) {
+          throw new Error('Contract not deployed on the current network');
+        }
+
+        async function register() {
+          let userAddress = (await web3.eth.getAccounts())[0]; // Get the connected account
+          let device = document.getElementById('device').value;
+          let ip = document.getElementById('ip').value;
+
+          try {
+            const transaction = await authContract.methods.register(userAddress, device, ip).send({ from: userAddress });
+            console.log('Transaction:', transaction);
+          } catch (error) {
+            console.error('Error registering:', error);
+          }
+        }
 
       async function login() {
         let userAddress = document.getElementById('userAddress').value;
@@ -47,7 +52,9 @@ fetch('./contracts/Auth.json')
       document.getElementById('loginButton').addEventListener('click', login);
       document.getElementById('logoutButton').addEventListener('click', logout);
       document.getElementById('displayLogsButton').addEventListener('click', displayLogs);
-
+    } else {
+      console.error('MetaMask not available in this browser');
+    }
     } catch (error) {
       console.error('Error initializing contract:', error);
     }
